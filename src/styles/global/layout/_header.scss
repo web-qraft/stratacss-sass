@@ -1,0 +1,154 @@
+//
+// _header.scss
+// ==================================================
+// ヘッダー領域 全般のスタイル
+// 
+
+// サイトヘッダー
+// ==================================================
+.site-header {
+	padding-block: 16px;
+	background: #fff;
+}
+
+	.site-header__inner {
+		display: flex;
+		align-items: center;
+		column-gap: 40px;
+		// max-width: 1140px;
+		margin-inline: auto;
+		padding-inline: 16px 24px;
+	}
+
+	// プライマリ領域
+	.site-header__primary {
+		display: flex;
+		align-items: center;
+		gap: 28px;
+	}
+
+	// セカンダリ領域
+	.site-header__secondary {
+		display: flex;
+		flex: 1;
+		align-items: center;
+		justify-content: end;
+	}
+
+
+// ブランディングエリア
+// ==================================================
+.header-branding {
+	// keep
+}
+
+	// 下層の場合は a タグで home へ遷移
+	.header-branding__cell {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding-inline: 8px;
+		color: #222;
+	}
+
+	.header-branding__logo {
+		position: relative;
+		top:-2px;
+		display: flex;
+		align-items: center;
+	}
+
+	.header-branding__title {
+		margin: initial;
+		font-size: 24px;
+
+		.text {
+			font-family: var(--font-family-primary);
+			font-weight: 650;
+			letter-spacing: 0.03em;
+		}
+	}
+
+
+// ナビゲーション
+// ==================================================
+
+.gnav-main {
+	display: none;
+
+	@media screen and ( min-width: 900px) {
+		display: flex;
+	}
+}
+
+	.gnav-main__items {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+	}
+
+	.gnav-main__item {
+		// keep
+	}
+
+	.gnav-main__item-link {
+		display: flex;
+		align-items: center;
+		padding-block: 8px;
+		padding-inline: 12px;
+		line-height: 1.2;
+		color: #333;
+
+		.text {
+			letter-spacing: 0.01em;
+		}
+
+		@media (any-hover: hover) and (pointer: fine) {
+			&:hover {
+				color: var(--brand-color-main);
+			}
+		}
+		// アクティブ処理
+		--gnav-item-link-active: #1035a4;
+
+		&.slug-about {
+			.pg-about & {
+				color: var(--gnav-item-link-active);
+			}
+		}
+	}
+
+
+// ビルド情報
+// ==================================================
+
+.build-badge {
+	margin-block: initial;
+	font-size: 12px;
+	line-height: 1.2;
+	text-align: right;
+	color: #555;
+
+	@media screen and ( min-width: 500px) {
+		font-size: 15px;
+	}
+	@media screen and ( min-width: 1200px) {
+		font-size: 16px;
+	}
+}
+
+	.build-badge__title {
+		display: inline-block;
+	}
+
+	.build-badge__content {
+		display: inline-block;
+		font-weight: 600;
+
+		.text {
+			display: inline-block;
+		}
+		.subtext {
+			display: inline-block;
+		}
+	}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>下層ページサンプル StrataCSS — Sass</title>
+	<link rel="stylesheet" href="../assets/css/global.css">
+	<link rel="stylesheet" href="../assets/css/pages/about.css">
+</head>
+
+<body class="pg-about">
+	<div class="site-frame">
+		<div class="site-frame__inner">
+
+			<!-- header -->
+			<header class="site-frame__header">
+				<div class="site-header">
+					<div class="site-header__inner">
+						<div class="site-header__primary">
+							<!-- branding -->
+							<div class="header-branding">
+								<a href="../" class="header-branding__cell">
+									<span class="header-branding__logo">
+										<img src="../assets/images/global/logo.svg" alt="" width="32" height="32">
+									</span>
+									<p class="header-branding__title">
+										<span class="text">StrataCSS</span>
+									</p>
+								</a>
+							</div>
+							<!-- navigation -->
+							<nav class="gnav-main" aria-label="グローバルナビゲーション">
+								<ul class="gnav-main__items">
+									<li class="gnav-main__item">
+										<a class="gnav-main__item-link slug-about">
+											<span class="text">このサイトについて</span>
+										</a>
+									</li>
+									<li class="gnav-main__item">
+										<a href="https://stratacss.com" class="gnav-main__item-link" target="_blank">
+											<span class="text">ドキュメントサイト</span>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+						<div class="site-header__secondary">
+							<p class="build-badge">
+								<span class="build-badge__title">Built with</span>
+								<span class="build-badge__content">
+									<span class="text">Sass</span>
+									<span class="subtext">(meta.load-css)</span>
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<!-- main -->
+			<main class="site-frame__main">
+				<div class="site-main">
+					<div class="site-main__inner">
+
+						<!-- page-header -->
+						<div class="page-header">
+							<div class="page-header__inner">
+								<h1 class="page-heading">
+									<span class="page-heading__title">
+										<span class="text">このサイトについて</span>
+										<span class="subtext">※下層ページサンプル（Sass版）</span>
+									</span>
+								</h1>
+								<!-- topic-path -->
+								<nav class="topic-path" aria-label="パンくずリスト">
+									<ol class="topic-path__items">
+										<li class="topic-path__item">
+											<a href="../" class="topic-path__item-link">HOME</a>
+										</li>
+										<li class="topic-path__item">
+											<span class="topic-path__item-current">このサイトについて</span>
+										</li>
+									</ol>
+								</nav>
+							</div>
+						</div>
+
+						<!-- dummy -->
+						<section class="dummy" id="dummy">
+							<div class="dummy__inner">
+								<header class="dummy__header">
+									<h2 class="dummy__heading">
+										<span class="title">サンプル</span>
+									</h2>
+								</header>
+								<div class="dummy__body">
+									<div class="dummy__textbox">
+										<p>
+											下層ページのサンプルです。<br>
+											個別CSSは <code>about.css</code>を読み込んでいます。
+										</p>
+									</div>
+								</div>
+							</div>
+							<footer class="dummy__footer">
+								<div class="dummy__actions">
+									<a class="c-linkbtn _ghost" href="../">
+										<span class="c-linkbtn__text">トップページに戻る</span>
+									</a>
+								</div>
+							</footer>
+						</section>
+
+					</div>
+				</div>
+			</main>
+
+			<!-- footer -->
+			<footer class="site-frame__footer">
+				<div class="site-footer">
+					<div class="site-footer__inner">
+						<div class="footer-copyright">
+							<p>StrataCSS Sample ｜ MIT</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		</div>
+	</div>
+</body>
+
+</html>

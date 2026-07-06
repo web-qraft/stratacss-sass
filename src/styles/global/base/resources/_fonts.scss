@@ -1,0 +1,20 @@
+//
+// _fonts.scss
+// ==================================================
+// Webフォント
+// url() は出力先 dist/assets/css/global.css からの相対パスを記述
+// 
+
+// Inter バリアブルフォント
+// ローカルにインストール済みならそちらを優先し、なければ self-host 版を使う
+// ※バリアブル版のインストール名は「InterVariable」（Inter 4.0以降）、静的版は「Inter」
+@font-face {
+	font-family: "Inter";
+	src:
+		local("InterVariable"),
+		local("Inter"),
+		url("../fonts/InterVariable.woff2") format("woff2");
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}

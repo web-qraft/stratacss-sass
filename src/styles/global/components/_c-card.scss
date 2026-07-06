@@ -1,0 +1,31 @@
+//
+// _c-card.scss
+// ==================================================
+//
+
+.c-card {
+	padding-block: 16px 16px;
+	padding-inline: 24px;
+	border-radius: 8px;
+	background: #fff;
+	box-shadow: 0 1px 8px rgb(0 0 0 / 10%);
+}
+
+	.c-card__header {
+		// keep
+	}
+
+	.c-card__heading {
+		font-family: var(--font-family-primary);
+		font-size: 24px;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+	}
+
+	.c-card__body {
+		padding-block: 16px;
+	}
+
+	.c-card__textbox {
+		line-height: 1.8;
+	}

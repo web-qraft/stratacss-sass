@@ -1,0 +1,16 @@
+//
+// _media-query.scss
+// ==================================================
+// メディアクエリ用 Mixin（min-width）
+//
+
+@use "sass:map";
+@use "abstracts/settings" as s;
+
+// 記述例
+// ※サンプルにつき、実際には利用していないためご注意ください。
+@mixin mq($breakpoint) {
+	@media (min-width: map.get(s.$breakpoints, $breakpoint)) {
+		@content;
+	}
+}

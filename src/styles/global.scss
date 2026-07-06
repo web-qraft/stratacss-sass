@@ -1,0 +1,32 @@
+//
+// global.scss
+// ==================================================
+// 全てのページで読み込むCSS
+// 
+
+@charset "utf-8";
+
+@use "sass:meta";
+
+/* レイヤー宣言（フル版）
+-------------------------------------------------- */
+@layer
+	base.generic, base.library, base.resources, base.tokens, base.themes, base.elements,
+	layout,
+	components,
+	pages,
+	utilities,
+	print;
+
+/* 各レイヤーの取り込み（meta.load-css で各ディレクトリの _index.scss を展開）
+-------------------------------------------------- */
+@layer base.generic		{ @include meta.load-css("global/base/generic"); }
+@layer base.library		{ @include meta.load-css("global/base/library"); }
+@layer base.resources { @include meta.load-css("global/base/resources"); }
+@layer base.tokens		{ @include meta.load-css("global/base/tokens"); }
+@layer base.themes		{ @include meta.load-css("global/base/themes"); }
+@layer base.elements	{ @include meta.load-css("global/base/elements"); }
+@layer layout					{ @include meta.load-css("global/layout"); }
+@layer components			{ @include meta.load-css("global/components"); }
+@layer utilities			{ @include meta.load-css("global/utilities"); }
+@layer print					{ @include meta.load-css("global/print"); }

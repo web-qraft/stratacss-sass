@@ -1,0 +1,27 @@
+{
+	"name": "stratacss-sass",
+	"version": "0.1.0",
+	"private": true,
+	"description": "StrataCSS official sample (Sass / SCSS)",
+	"license": "MIT",
+	"scripts": {
+		"dev": "npm run build:static && run-p dev:css dev:serve dev:static",
+		"build": "npm run clean && npm run build:static && npm run build:css",
+		"dev:css": "sass --watch --no-source-map --load-path=node_modules --load-path=src/styles src/styles:dist/assets/css",
+		"dev:serve": "browser-sync start --server dist --startPath / --files \"dist/**/*\" --no-notify",
+		"dev:static": "node scripts/copy-static.mjs --watch",
+		"build:css": "sass --load-path=node_modules --load-path=src/styles --no-source-map --style=expanded src/styles:dist/assets/css",
+		"build:static": "node scripts/copy-static.mjs",
+		"clean": "rm -rf dist"
+	},
+	"devDependencies": {
+		"browser-sync": "^3.0.4",
+		"chokidar": "^5.0.0",
+		"npm-run-all2": "^8.0.4",
+		"sass": "^1.80.0"
+	},
+	"dependencies": {
+		"animate.css": "^4.1.1",
+		"kiso.css": "^1.2.4"
+	}
+}

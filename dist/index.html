@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>StrataCSS — Sass</title>
+	<link rel="stylesheet" href="./assets/css/global.css">
+	<link rel="stylesheet" href="./assets/css/pages/home.css">
+</head>
+
+<body class="pg-home">
+	<div class="site-frame">
+		<div class="site-frame__inner">
+
+			<!-- header -->
+			<header class="site-frame__header">
+				<div class="site-header">
+					<div class="site-header__inner">
+						<div class="site-header__primary">
+							<!-- branding -->
+							<div class="header-branding">
+								<div class="header-branding__cell">
+									<span class="header-branding__logo">
+										<img src="./assets/images/global/logo.svg" alt="" width="32" height="32">
+									</span>
+									<h1 class="header-branding__title">
+										<span class="text">StrataCSS</span>
+									</h1>
+								</div>
+							</div>
+							<!-- navigation -->
+							<nav class="gnav-main" aria-label="グローバルナビゲーション">
+								<ul class="gnav-main__items">
+									<li class="gnav-main__item">
+										<a href="./about" class="gnav-main__item-link slug-about">
+											<span class="text">このサイトについて</span>
+										</a>
+									</li>
+									<li class="gnav-main__item">
+										<a href="https://stratacss.com" class="gnav-main__item-link" target="_blank">
+											<span class="text">ドキュメントサイト</span>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+						<div class="site-header__secondary">
+							<p class="build-badge">
+								<span class="build-badge__title">Built with</span>
+								<span class="build-badge__content">
+									<span class="text">Sass</span>
+									<span class="subtext">(meta.load-css)</span>
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<!-- main -->
+			<main class="site-frame__main">
+				<div class="site-main">
+					<div class="site-main__inner">
+
+						<!-- mv -->
+						<section class="mv" id="mv">
+							<div class="mv__inner">
+								<header class="mv__header">
+									<h2 class="mv__heading">
+										<span class="mv__heading-title">
+											<span class="text">StrataCSS サンプル</span>
+											<span class="subtext">（Sass版）</span>
+										</span>
+									</h2>
+								</header>
+								<div class="mv__body">
+									<div class="mv__textbox">
+										<p>
+											このサイトはStrataCSSの <code>@layer</code> によるカスケード確認用です。<br>
+											ディレクトリ・レイヤー構成と、外部CSSやWebフォントの取り込みを Sass で実装しています。
+										</p>
+									</div>
+									<div class="mv__actions">
+										<a class="c-linkbtn _primary" href="https://stratacss.com" target="_blank">
+											<span class="c-linkbtn__text">ドキュメントサイト</span>
+										</a>
+										<a class="c-linkbtn _secondary" href="https://github.com/web-qraft/stratacss-sass" target="_blank">
+											<span class="c-linkbtn__text">GitHubリポジトリ</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<!-- about -->
+						<section class="about" id="about">
+							<div class="about__inner">
+								<header class="about__header">
+									<h2 class="about__heading">
+										<span class="title">このサイトについて</span>
+										<span class="subtitle">About</span>
+									</h2>
+								</header>
+								<div class="about__body">
+									<div class="about__textbox">
+										<p>
+											このページは、StrataCSSの概念実証のために公開しています。<br>
+											<code>@layer</code>の適用状態を確認するには、ブラウザのインスペクタ（DevTools）をご利用ください。
+										</p>
+										<p>
+											HTMLの記述やclass属性の命名、CSSプロパティはあくまでサンプルであり、StrataCSSではこれらの規則は定めていないことにご注意ください。
+										</p>
+									</div>
+								</div>
+							</div>
+							<footer class="about__footer">
+								<div class="about__actions">
+									<a class="c-linkbtn _ghost" href="./about">
+										<span class="c-linkbtn__text">下層ページサンプル</span>
+									</a>
+								</div>
+							</footer>
+						</section>
+
+						<!-- principles -->
+						<section class="principles" id="principles">
+							<div class="principles__inner">
+								<header class="principles__header">
+									<h2 class="principles__heading">
+										<span class="title">3つの原則</span>
+									</h2>
+								</header>
+								<div class="principles__body">
+									<div class="principles__description">
+										<p>以下のカード型コンテンツは「<strong>Components</strong>」由来です。</p>
+									</div>
+									<div class="principles__sections">
+										<!-- c-card -->
+										<section class="c-card">
+											<header class="c-card__header">
+												<h3 class="c-card__heading">
+													<span class="title">Scoping</span>
+												</h3>
+											</header>
+											<div class="c-card__body">
+												<div class="c-card__textbox">
+													<p>Global / Pages スコープにより、CSSが適用されるページ範囲を定義します。</p>
+												</div>
+											</div>
+										</section>
+										<!-- c-card -->
+										<section class="c-card">
+											<header class="c-card__header">
+												<h3 class="c-card__heading">
+													<span class="title">Layering</span>
+												</h3>
+											</header>
+											<div class="c-card__body">
+												<div class="c-card__textbox">
+													<p>CSS分類から概念的な階層構造と上書き順を定め、<code>@layer</code> で仕様と一致させます。</p>
+												</div>
+											</div>
+										</section>
+										<!-- c-card -->
+										<section class="c-card">
+											<header class="c-card__header">
+												<h3 class="c-card__heading">
+													<span class="title">Aligning</span>
+												</h3>
+											</header>
+											<div class="c-card__body">
+												<div class="c-card__textbox">
+													<p>CSS分類・ディレクトリ・<code>@layer</code> を同じ言葉で揃えることで予測しやすい状態を保ちます。</p>
+												</div>
+											</div>
+										</section>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<!-- test -->
+						<section class="test" id="test">
+							<div class="test__inner animated fadeInUp">
+								<header class="test__header">
+									<h2 class="test__heading">
+										<span class="title">テスト・サンプル</span>
+									</h2>
+								</header>
+								<div class="test__body">
+									<div class="test__description">
+										<p>テスト用のサンプルです。いくつかの上書きサンプルを掲載します。</p>
+									</div>
+									<dl class="test__items">
+										<div class="test__item">
+											<dt class="test__item-obj">
+												<a class="c-linkbtn _primary" href="#">
+													<span class="c-linkbtn__text">リンクボタン</span>
+												</a>
+											</dt>
+											<dd class="test__item-data">
+												Components層で定義したリンク形状のボタン
+											</dd>
+										</div>
+										<div class="test__item">
+											<dt class="test__item-obj">
+												<a class="c-linkbtn _primary u-fill-accent" href="#">
+													<span class="c-linkbtn__text">リンクボタン ＋ .u-fill-accent</span>
+												</a>
+											</dt>
+											<dd class="test__item-data">
+												Components層で定義したリンクボタンをUtilities層で上書き
+											</dd>
+										</div>
+										<div class="test__item">
+											<dt class="test__item-obj">
+												<p class="test-text">
+													テキストの<span class="u-accent">アクセント</span>です
+												</p>
+											</dt>
+											<dd class="test__item-data">
+												Pages層で定義したテキストカラーをUtilities層で上書き
+											</dd>
+										</div>
+									</dl>
+									<div class="test__textbox">
+										<p>
+											このセクションの <code>.test__inner</code> に付与した <code>.animated</code> / <code>.fadeInUp</code>
+											は、library層に取り込んだ
+											animate.css のクラスです。
+											Tokens層で <code>--animate-duration</code> を上書きしています。
+										</p>
+									</div>
+								</div>
+							</div>
+						</section>
+
+					</div>
+				</div>
+			</main>
+
+			<!-- footer -->
+			<footer class="site-frame__footer">
+				<div class="site-footer">
+					<div class="site-footer__inner">
+						<div class="footer-copyright">
+							<p>StrataCSS Sample ｜ MIT</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		</div>
+	</div>
+</body>
+
+</html>

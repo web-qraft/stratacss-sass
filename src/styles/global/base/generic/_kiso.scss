@@ -1,0 +1,7 @@
+//
+// _kiso.scss
+// ==================================================
+//
+
+// generic — リセットCSSとして npm の kiso.css を利用（load-path: node_modules）
+@use "kiso.css/kiso.css";

@@ -1,0 +1,13 @@
+//
+// _index.scss
+// ==================================================
+// ページレイアウト
+//
+
+// 最大規模のラッパー
+@forward "site-frame";
+
+// 各領域
+@forward "header";
+@forward "main";
+@forward "footer";

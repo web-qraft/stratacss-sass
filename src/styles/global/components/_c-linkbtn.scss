@@ -1,0 +1,58 @@
+//
+// _c-linkbtn.scss
+// ==================================================
+//
+
+.c-linkbtn {
+	position: relative;
+	display: inline-block;
+	padding-block: 8px;
+	padding-inline: 20px;
+	border: solid 1px transparent;
+	border-radius: 6px;
+	font-weight: 500;
+	text-decoration: none;
+	background-color: #eee;
+
+	&:active {
+		top: 1px;
+	}
+
+	&._primary {
+		color: #fff;
+		background: var(--brand-color-main);
+
+		@media (any-hover: hover) and (pointer: fine) {
+			&:hover {
+				background: #261ac8;
+			}
+		}
+	}
+
+	&._secondary {
+		color: #000;
+		background: #cccfe3;
+		background: var(--brand-color-sub);
+
+		@media (any-hover: hover) and (pointer: fine) {
+			&:hover {
+				color: #1306cc;
+				background: #c8cdee;
+			}
+		}
+	}
+
+	&._ghost {
+		border-color: var(--brand-color-main);
+		color: #261da5;
+		background: #f7f7fb;
+
+		@media (any-hover: hover) and (pointer: fine) {
+			&:hover {
+				border-color: #180ada;
+				color: #180ada;
+				background: #fcfcfc;
+			}
+		}
+	}
+}

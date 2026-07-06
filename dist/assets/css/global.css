@@ -1,0 +1,856 @@
+@charset "UTF-8";
+/* レイヤー宣言（フル版）
+-------------------------------------------------- */
+@layer base.generic, base.library, base.resources, base.tokens, base.themes, base.elements,
+	layout,
+	components,
+	pages,
+	utilities,
+	print;
+/* 各レイヤーの取り込み（meta.load-css で各ディレクトリの _index.scss を展開）
+-------------------------------------------------- */
+@layer base.generic {
+  /*! kiso.css v1.2.4 | MIT License | https://github.com/tak-dcxi/kiso.css */
+  /* ======================================================
+  //  MARK: Universal
+  // ====================================================== */
+  *,
+  ::before,
+  ::after {
+    /*
+    * Includes `padding` and `border` in the element's specified dimensions.
+    * It is highly recommended to set `box-sizing: border-box;` by default, as it makes styling much easier, especially when specifying `width: 100%;`.
+    */
+    box-sizing: border-box;
+  }
+  /* ======================================================
+  //  MARK: Document and Body Elements
+  // ====================================================== */
+  :where(:root) {
+    /* In Safari, if `font-family` is not specified, a serif font is applied by default, so `sans-serif` is set as the default here. */
+    font-family: sans-serif;
+    /*
+    * For accessibility, it is recommended to set the `line-height` to at least 1.5 times the text size within paragraphs.
+    * @see https://waic.jp/translations/WCAG21/#visual-presentation
+    */
+    line-height: 1.5;
+    /* Remove space when punctuation marks are adjacent, and also remove leading spaces in a line. */
+    text-spacing-trim: trim-start;
+    /* Improves readability by inserting a small space between Japanese and alphanumeric characters. */
+    text-autospace: normal;
+    /* Prevents misreading by applying strict line-breaking rules. */
+    line-break: strict;
+    /* Wraps English words mid-word. Specifying `anywhere` also prevents content from overflowing in layouts like `flex` or `grid`. */
+    overflow-wrap: anywhere;
+    /*
+    * Mobile browsers have an algorithm that automatically adjusts font sizes to prevent text from becoming too small.
+    * This controls the auto-adjustment feature to prevent unwanted resizing.
+    */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /*
+    * Prevents layout shift caused by the appearance or disappearance of the scrollbar.
+    * Starting with Chrome 145, specifying `scrollbar-gutter: stable` will cause vw to be calculated without considering the scrollbar, which will also prevent horizontal scrolling.
+    */
+    scrollbar-gutter: stable;
+    /* Suppresses the tap highlight on iOS. */
+    -webkit-tap-highlight-color: transparent;
+  }
+  :where(body) {
+    /*
+    * When creating a sticky footer, a minimum height is often required.
+    * Setting the `min-block-size` to the dynamic viewport height ensures enough space for the footer.
+    */
+    min-block-size: 100dvb;
+    /* The `margin` specified in the User Agent (UA) stylesheet is often unnecessary, so it is reset here. */
+    margin: unset;
+  }
+  /* ======================================================
+  // MARK: Sections
+  // ------------------------------------------------------ */
+  :where(:is(h1, h2, h3, h4, h5, h6):lang(en)) {
+    /* Prevents the last line of text from ending with a single word, which can look awkward (known as an orphan). */
+    text-wrap: pretty;
+  }
+  :where(h1) {
+    /*
+    * Adjusts user agent (UA) styles for `h1` elements within sectioning content.
+    * This addresses DevTools warnings that appear when `h1` elements nested within sectioning content lack `font-size` and `margin` properties.
+    * @see https://html.spec.whatwg.org/#sections-and-headings
+    */
+    margin-block: 0.67em;
+    font-size: 2em;
+  }
+  :where(h2, h3, h4, h5, h6) {
+    /* The `margin-block` specified in the User Agent (UA) stylesheet is often unnecessary, so it is reset. */
+    margin-block: unset;
+  }
+  :where(search) {
+    /*
+    * The `<search>` element is supported from Safari 17.
+    * This prevents it from being displayed as an inline element in unsupported environments.
+    */
+    display: block flow;
+  }
+  /* ======================================================
+  //  MARK: Grouping content
+  // ====================================================== */
+  :where(p, blockquote, figure, pre, address, ul, ol, dl, menu) {
+    /* The `margin-block` specified in the User Agent (UA) stylesheet is often unnecessary, so it is reset. */
+    margin-block: unset;
+  }
+  :where(blockquote, figure) {
+    /* The `margin-inline` specified in the User Agent (UA) stylesheet is often unnecessary, so it is reset. */
+    margin-inline: unset;
+  }
+  :where(p:lang(en)) {
+    /*
+    * In English, a single word on the last line is called a "widow" or "orphan" and is considered something to avoid as it makes the text harder to read.
+    * Therefore, when lang="en", this prevents the last line from ending with a single word.
+    */
+    text-wrap: pretty;
+  }
+  :where(address:lang(ja)) {
+    /* Italic style is not common in Japanese, so the `font-style` is reset. */
+    font-style: unset;
+  }
+  :where(ul, ol, menu) {
+    /* The `padding-inline-start` specified in the User Agent (UA) stylesheet is often unnecessary, so it is reset. */
+    padding-inline-start: unset;
+    /*
+    * In Safari, using `list-style: none` prevents screen readers from announcing lists.
+    * `list-style-type: ""` is used to hide markers without affecting accessibility.
+    * @see https://matuzo.at/blog/2023/removing-list-styles-without-affecting-semantics
+    */
+    list-style-type: "";
+  }
+  :where(dt) {
+    /* It is common to display `<dt>` elements in bold, so `font-weight: bolder;` is set by default. */
+    font-weight: bolder;
+  }
+  :where(dd) {
+    /* The `margin-inline-start` specified in the User Agent (UA) stylesheet is often unnecessary, so it is reset. */
+    margin-inline-start: unset;
+  }
+  :where(pre) {
+    /*
+    * Since `text-spacing-trim` can affect spacing in `<pre>` elements even with its initial value, the final rendering may depend on the user's font settings.
+    * To ensure consistent alignment, `space-all` is explicitly specified and inheritance is prevented.
+    */
+    text-spacing-trim: space-all;
+    /* Set to `no-autospace` as it can cause misalignment with monospaced fonts. */
+    text-autospace: no-autospace;
+  }
+  @media print {
+    :where(pre) {
+      /* Prevent text wrapping in print media. */
+      text-wrap-mode: unset;
+    }
+  }
+  /* ======================================================
+  //  MARK: Text-level semantics
+  // ====================================================== */
+  :where(em:lang(ja)) {
+    /* In Japanese, emphasis is commonly represented by bold text, so `font-weight: bolder;` is set by default. */
+    font-weight: bolder;
+  }
+  :where(:is(i, cite, em, dfn):lang(ja)) {
+    /* Italic style is not common in Japanese, so the `font-style` is reset. */
+    font-style: unset;
+  }
+  :where(u, s, del, ins) {
+    /* Set the underline inset to `auto` and separate only the horizontal lines when underlines are consecutive. */
+    text-decoration-inset: auto;
+  }
+  :where(code, kbd, samp) {
+    /*
+    * Set a monospace font family referencing Tailwind.
+    * @see https://tailwindcss.com/docs/font-family
+    */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    /* Font feature settings can have adverse effects on monospaced fonts, so their values are explicitly set to `initial` to prevent inheritance. */
+    font-feature-settings: initial;
+    font-variation-settings: initial;
+    /* Resets the `font-size` specified in the UA stylesheet to allow inheritance. */
+    font-size: unset;
+    /*
+    * Disables font ligatures for programming fonts (like Fira Code)
+    * to prevent character combinations like `=>` from being rendered as a single symbol (e.g., `⇒`).
+    */
+    font-variant-ligatures: none;
+  }
+  :where(abbr[title]) {
+    /*
+    * The `<abbr>` element with the `title` attribute isn't helpful regarding accessibility because support is inconsistent, and it's only accessible to some users.
+    * This rule shows a dotted underline on abbreviations in all browsers (there's a bug in Safari) and changes the cursor.
+    * @see https://adrianroselli.com/2024/01/using-abbr-element-with-title-attribute.html
+    */
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-inset: auto;
+    cursor: help;
+  }
+  :where(time) {
+    /* Set to `no-autospace` because date notations in typography do not include spaces. */
+    text-autospace: no-autospace;
+  }
+  @media (forced-colors: active) {
+    :where(mark) {
+      /*
+      * In forced-colors mode, the color of the mark element may not change, which can be problematic. Use system colors in forced-colors mode.
+      * @see https://adrianroselli.com/2017/12/tweaking-text-level-styles.html#MarkWHCM
+      */
+      background-color: Highlight;
+      color: HighlightText;
+    }
+  }
+  @media print {
+    :where(mark) {
+      /*
+      * Not all printers support color, and users might print in grayscale.
+      * It's worth adding a non-disruptive style that scales with the text, as an alternative to relying only on background color.
+      * @see https://adrianroselli.com/2017/12/tweaking-text-level-styles.html#MarkPrint
+      */
+      border-width: 1px;
+      border-style: dotted;
+    }
+  }
+  /* ======================================================
+  //  MARK: Links
+  // ====================================================== */
+  :where(a) {
+    /*
+    * The default `color` from the UA stylesheet is rarely used as is, so it's reset to allow inheritance.
+    * In Firefox on iOS, the user agent stylesheet’s text color is applied even when the text is not a link.
+    * @see https://github.com/darkreader/darkreader/issues/9836
+    */
+    color: unset;
+  }
+  :where(a:any-link) {
+    /*
+    * While link underlines can be useful, they are often obstructive.
+    * They are disabled by default.
+    * If needed, restore them using `text-decoration-line: revert;`.
+    */
+    text-decoration-line: unset;
+    /* Set the underline thickness to the font's default thickness. */
+    text-decoration-thickness: from-font;
+    /* Set the underline inset to `auto` and separate only the horizontal lines when underlines are consecutive. */
+    text-decoration-inset: auto;
+  }
+  /* ======================================================
+  //  MARK: Embedded content
+  // ====================================================== */
+  :where(img, svg, picture, video, audio, canvas, model, iframe, embed, object) {
+    /* Prevents overflow by setting the maximum width to `100%`. */
+    max-inline-size: 100%;
+    /* Prevents extra space from appearing at the bottom of the element. */
+    vertical-align: bottom;
+  }
+  :where(img, svg, picture, video, canvas, model, iframe, embed, object) {
+    /*
+    * Automatically adjust block size based on content.
+    * Exclude the <audio> element as it disappears when block-size is auto.
+    * @see https://github.com/tak-dcxi/kiso.css/issues/5
+    */
+    block-size: auto;
+  }
+  :where(iframe) {
+    /* The `border` specified in the UA stylesheet is often unnecessary, so it is reset. */
+    border: unset;
+  }
+  /* ======================================================
+  //  MARK: Tabular data
+  // ====================================================== */
+  :where(table) {
+    /* Collapse borders for a more refined table design. */
+    border-collapse: collapse;
+  }
+  :where(caption, th) {
+    /* The `text-align` specified in the UA stylesheet is often unnecessary, so it is reset. */
+    text-align: unset;
+  }
+  :where(caption:lang(en)) {
+    /* Prevents the last line of text from ending with a single word, which can look awkward (known as an orphan). */
+    text-wrap: pretty;
+  }
+  /* ======================================================
+  //  MARK: Forms
+  // ====================================================== */
+  :where(button, input, select, textarea),
+  ::file-selector-button {
+    /*
+    * These elements are often styled with a border, so a `1px` border is applied by default for consistency.
+    * This ensures readability even for unstyled elements.
+    * When resetting, it's recommended to use `border-color: transparent` instead of `border: none` to account for forced color modes.
+    */
+    border-width: 1px;
+    border-style: solid;
+    /* These styles specified in the UA stylesheet are often unnecessary, so they are reset to allow for inheritance. */
+    border-color: unset;
+    border-radius: unset;
+    color: unset;
+    font: unset;
+    letter-spacing: unset;
+    text-align: unset;
+  }
+  :where(input:is([type=radio i], [type=checkbox i])) {
+    /* The `margin` specified in the User Agent (UA) stylesheet is often unnecessary, so it is reset here. */
+    margin: unset;
+  }
+  :where(input[type=file i]) {
+    /* The `border` is often unnecessary, so it is reset here. */
+    border: unset;
+  }
+  :where(input[type=search i]) {
+    /* Remove the rounded corners of search inputs on macOS and normalize the background color. */
+    -webkit-appearance: textfield;
+  }
+  @supports (-webkit-touch-callout: none) {
+    :where(input[type=search i]) {
+      /* normalize the background color on iOS. */
+      background-color: Canvas;
+    }
+  }
+  :where(input:is([type=tel i],
+  [type=url i],
+  [type=email i],
+  [type=number i]):not(:placeholder-shown)) {
+    /*
+    * Certain input types need to maintain left alignment even in right-to-left (RTL) languages.
+    * However, this only applies when the value is not empty, as the placeholder should be right-aligned.
+    * @see https://rtlstyling.com/posts/rtl-styling#form-inputs
+    */
+    direction: ltr;
+  }
+  :where(textarea) {
+    /* The `margin-block` specified in Firefox's UA stylesheet is often unnecessary, so it is reset. */
+    margin-block: unset;
+    /* Allows vertical resizing for `<textarea>` elements. */
+    resize: block;
+  }
+  :where(input:not([type=button i], [type=submit i], [type=reset i]),
+  textarea,
+  [contenteditable]) {
+    /* Set to `no-autospace` because `text-autospace` can insert spaces during input, potentially causing erratic behavior. */
+    text-autospace: no-autospace;
+  }
+  :where(button,
+  input:is([type=button i], [type=submit i], [type=reset i])),
+  ::file-selector-button {
+    /* The `background-color` specified in the User Agent (UA) stylesheet is often unnecessary, so it is reset here. */
+    background-color: unset;
+  }
+  :where(button,
+  input:is([type=button i], [type=submit i], [type=reset i]),
+  [role=tab i],
+  [role=button i],
+  [role=option i]),
+  ::file-selector-button {
+    /*
+    * On iOS, double-tapping a button can cause zooming, which harms usability.
+    * `touch-action: manipulation` is specified to disable zooming on double-tap.
+    * Third-party plugins such as Swiper sometimes use div elements with these roles as buttons, since double-tapping a div can still trigger zooming, it's advisable to specify this property.
+    */
+    touch-action: manipulation;
+  }
+  :where(button:enabled,
+  label[for],
+  select:enabled,
+  input:is([type=button i],
+  [type=submit i],
+  [type=reset i],
+  [type=radio i],
+  [type=checkbox i]):enabled,
+  [role=tab i],
+  [role=button i],
+  [role=option i]),
+  :where(:enabled)::file-selector-button {
+    /* Indicate clickable elements with a pointer cursor. */
+    cursor: pointer;
+  }
+  :where(fieldset) {
+    /*
+    * Prevent fieldset from causing overflow.
+    * Reset the default `min-inline-size: min-content` to prevent children from stretching fieldset.
+    * @see https://github.com/twbs/bootstrap/issues/12359
+    */
+    min-inline-size: 0;
+    /* The following default styles are often unnecessary, so they are reset. */
+    margin-inline: unset;
+    padding: unset;
+    border: unset;
+  }
+  :where(legend) {
+    /* The default `padding-inline` is often unnecessary, so it is reset. */
+    padding-inline: unset;
+  }
+  :where(progress) {
+    /* Resets the vertical alignment of the `<progress>` element to its initial value. */
+    vertical-align: unset;
+  }
+  ::placeholder {
+    /* Standardize the opacity of placeholder text (it may be set lower by default in Firefox). */
+    opacity: unset;
+  }
+  /* ======================================================
+  //  MARK: Interactive elements
+  // ====================================================== */
+  :where(summary) {
+    /* The default triangle marker is often unnecessary, so it is disabled. */
+    list-style-type: "";
+    /* Changing the cursor to a pointer clarifies the clickability of the element. */
+    cursor: pointer;
+  }
+  :where(summary)::-webkit-details-marker {
+    /* In Safari versions earlier than 18.4 (released in April 2025), a triangle icon is displayed using the -webkit-details-marker CSS pseudo-element, so it should be removed. */
+    display: none;
+  }
+  :where(dialog, [popover]) {
+    /*
+    * When these fixed-position elements are scrolled, preventing scroll chaining on the underlying page and bounce effects on mobile improves usability.
+    * Disabling block-direction scroll chaining is recommended.
+    */
+    overscroll-behavior-block: contain;
+    /* The following default styles are often unnecessary, so they are reset. */
+    padding: unset;
+    border: unset;
+  }
+  :where(dialog:not([open], [popover]), [popover]:not(:popover-open)) {
+    /*
+    * These elements can be easily displayed by explicitly setting their `display` property.
+    * To prevent them from appearing when not in an open state, they are forcibly hidden.
+    */
+    display: none !important;
+  }
+  :where(dialog) {
+    /*
+    * The max width and height of a `<dialog>` element are typically determined by the design.
+    * These UA stylesheet properties are reset as they can be obstructive, especially when trying to make the dialog full-screen.
+    */
+    max-inline-size: unset;
+    max-block-size: unset;
+  }
+  :where(dialog)::backdrop {
+    /* Normalize the background color of the `::backdrop` element. */
+    background-color: oklch(0% 0 0deg/30%);
+  }
+  :where([popover]) {
+    /*
+    * While the UA stylesheet's `margin` for `<dialog>` elements is useful for centering with `inset: 0`,
+    * but `margin` for `popover` elements is often obstructive as they frequently use Anchor Positioning.
+    */
+    margin: unset;
+  }
+  /* ======================================================
+  //  MARK: Focus Styles
+  // ====================================================== */
+  :where(:focus-visible) {
+    /* Add space between the content and the focus outline. */
+    outline-offset: 3px;
+  }
+  [tabindex="-1"]:focus {
+    /* Prevent programmatically focused elements from displaying an outline unless they are naturally focusable. */
+    outline: none !important;
+  }
+  /* ======================================================
+  //  MARK: Misc
+  // ====================================================== */
+  :where(:disabled, [aria-disabled=true i]) {
+    /* Display the default cursor on disabled elements to reflect their non-interactive state. */
+    cursor: default;
+  }
+  [hidden]:not([hidden=until-found i]) {
+    /* Ensure that elements intended to be hidden are not displayed, improving clarity and layout control. */
+    display: none !important;
+  }
+}
+@layer base.library {
+  :root {
+    --animate-duration: 1s;
+    --animate-delay: 1s;
+    --animate-repeat: 1;
+  }
+  .animated {
+    animation-duration: var(--animate-duration);
+    animation-fill-mode: both;
+  }
+  .animated.infinite {
+    animation-iteration-count: infinite;
+  }
+  .animated.repeat-1 {
+    animation-iteration-count: var(--animate-repeat);
+  }
+  .animated.repeat-2 {
+    animation-iteration-count: calc(var(--animate-repeat) * 2);
+  }
+  .animated.repeat-3 {
+    animation-iteration-count: calc(var(--animate-repeat) * 3);
+  }
+  .animated.delay-1s {
+    animation-delay: var(--animate-delay);
+  }
+  .animated.delay-2s {
+    animation-delay: calc(var(--animate-delay) * 2);
+  }
+  .animated.delay-3s {
+    animation-delay: calc(var(--animate-delay) * 3);
+  }
+  .animated.delay-4s {
+    animation-delay: calc(var(--animate-delay) * 4);
+  }
+  .animated.delay-5s {
+    animation-delay: calc(var(--animate-delay) * 5);
+  }
+  .animated.faster {
+    animation-duration: calc(var(--animate-duration) / 2);
+  }
+  .animated.fast {
+    animation-duration: calc(var(--animate-duration) * 0.8);
+  }
+  .animated.slow {
+    animation-duration: calc(var(--animate-duration) * 2);
+  }
+  .animated.slower {
+    animation-duration: calc(var(--animate-duration) * 3);
+  }
+  @media print, (prefers-reduced-motion: reduce) {
+    .animated {
+      animation-duration: 1ms !important;
+      transition-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+    }
+    .animated[class*=Out] {
+      opacity: 0;
+    }
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  .fadeInUp {
+    animation-name: fadeInUp;
+  }
+}
+@layer base.resources {
+  @font-face {
+    font-family: "Inter";
+    src: local("InterVariable"), local("Inter"), url("../fonts/InterVariable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+@layer base.tokens {
+  :root {
+    --font-family-common: sans-serif;
+    --font-family-primary: "Inter";
+    --brand-color-main: #4139a6;
+    --brand-color-sub: rgb(207.5, 205.5, 232.75);
+    --maxw-sm: 768px;
+    --maxw-md: 840px;
+    --maxw-lg: 1024px;
+    --inner-pd-inline: 20px;
+    --animate-duration: 0.6s;
+  }
+  @media screen and (min-width: 600px) {
+    :root {
+      --inner-pd-inline: 30px;
+    }
+  }
+}
+@layer base.themes {}
+@layer base.elements {
+  body {
+    overflow-y: scroll;
+    font-family: var(--font-family-common);
+    line-height: 1.8;
+    color: #222;
+    background: #f7f7fb;
+  }
+  a {
+    color: var(--brand-color-main);
+  }
+  code {
+    padding-block: 2px;
+    padding-inline: 5px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    font-size: 90%;
+    background: #f4f4f9;
+  }
+}
+@layer layout {
+  .site-header {
+    padding-block: 16px;
+    background: #fff;
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    column-gap: 40px;
+    margin-inline: auto;
+    padding-inline: 16px 24px;
+  }
+  .site-header__primary {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .site-header__secondary {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: end;
+  }
+  .header-branding__cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-inline: 8px;
+    color: #222;
+  }
+  .header-branding__logo {
+    position: relative;
+    top: -2px;
+    display: flex;
+    align-items: center;
+  }
+  .header-branding__title {
+    margin: initial;
+    font-size: 24px;
+  }
+  .header-branding__title .text {
+    font-family: var(--font-family-primary);
+    font-weight: 650;
+    letter-spacing: 0.03em;
+  }
+  .gnav-main {
+    display: none;
+  }
+  @media screen and (min-width: 900px) {
+    .gnav-main {
+      display: flex;
+    }
+  }
+  .gnav-main__items {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .gnav-main__item-link {
+    display: flex;
+    align-items: center;
+    padding-block: 8px;
+    padding-inline: 12px;
+    line-height: 1.2;
+    color: #333;
+  }
+  .gnav-main__item-link .text {
+    letter-spacing: 0.01em;
+  }
+  @media (any-hover: hover) and (pointer: fine) {
+    .gnav-main__item-link:hover {
+      color: var(--brand-color-main);
+    }
+  }
+  .gnav-main__item-link {
+    --gnav-item-link-active: #1035a4;
+  }
+  .pg-about .gnav-main__item-link.slug-about {
+    color: var(--gnav-item-link-active);
+  }
+  .build-badge {
+    margin-block: initial;
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: right;
+    color: #555;
+  }
+  @media screen and (min-width: 500px) {
+    .build-badge {
+      font-size: 15px;
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .build-badge {
+      font-size: 16px;
+    }
+  }
+  .build-badge__title {
+    display: inline-block;
+  }
+  .build-badge__content {
+    display: inline-block;
+    font-weight: 600;
+  }
+  .build-badge__content .text {
+    display: inline-block;
+  }
+  .build-badge__content .subtext {
+    display: inline-block;
+  }
+  .site-main {
+    min-height: 90vh;
+    padding-block-end: 64px;
+  }
+  .site-footer {
+    position: relative;
+    z-index: 1;
+    padding-block: 32px;
+    border-top: 1px solid #e3e3ef;
+    background-color: #3c3c46;
+  }
+  .site-footer__inner {
+    padding-inline: 20px;
+  }
+  .footer-copyright {
+    letter-spacing: 0.05em;
+    text-align: center;
+    color: #dfe4ef;
+  }
+}
+@layer components {
+  .page-header {
+    padding-block: 40px 36px;
+    padding-inline: var(--inner-pd-inline);
+    background: #d9e5ee;
+    background: linear-gradient(to left, #d9e5ee, #ebecf4);
+  }
+  .page-header__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: var(--maxw-md);
+    margin-inline: auto;
+    padding-inline: 8px;
+    animation: fade-up 0.5s ease both;
+  }
+  .page-heading {
+    font-size: 26px;
+  }
+  .page-heading__title .text {
+    display: inline-block;
+    margin-inline-end: 8px;
+  }
+  .page-heading__title .subtext {
+    display: inline-block;
+    font-size: 18px;
+  }
+  .topic-path__items {
+    display: flex;
+    gap: 8px;
+  }
+  .topic-path__item {
+    display: flex;
+    gap: 8px;
+  }
+  .topic-path__item + .topic-path__item::before {
+    content: "/";
+    color: #999;
+  }
+  .topic-path__item-current {
+    color: #555;
+  }
+  .c-card {
+    padding-block: 16px 16px;
+    padding-inline: 24px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  }
+  .c-card__heading {
+    font-family: var(--font-family-primary);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .c-card__body {
+    padding-block: 16px;
+  }
+  .c-card__textbox {
+    line-height: 1.8;
+  }
+  .c-linkbtn {
+    position: relative;
+    display: inline-block;
+    padding-block: 8px;
+    padding-inline: 20px;
+    border: solid 1px transparent;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: #eee;
+  }
+  .c-linkbtn:active {
+    top: 1px;
+  }
+  .c-linkbtn._primary {
+    color: #fff;
+    background: var(--brand-color-main);
+  }
+  @media (any-hover: hover) and (pointer: fine) {
+    .c-linkbtn._primary:hover {
+      background: #261ac8;
+    }
+  }
+  .c-linkbtn._secondary {
+    color: #000;
+    background: #cccfe3;
+    background: var(--brand-color-sub);
+  }
+  @media (any-hover: hover) and (pointer: fine) {
+    .c-linkbtn._secondary:hover {
+      color: #1306cc;
+      background: #c8cdee;
+    }
+  }
+  .c-linkbtn._ghost {
+    border-color: var(--brand-color-main);
+    color: #261da5;
+    background: #f7f7fb;
+  }
+  @media (any-hover: hover) and (pointer: fine) {
+    .c-linkbtn._ghost:hover {
+      border-color: #180ada;
+      color: #180ada;
+      background: #fcfcfc;
+    }
+  }
+}
+@layer utilities {
+  .u-accent {
+    color: #a41178;
+  }
+  .u-fill-accent {
+    background-color: #ca5806;
+  }
+}
+@layer print {
+  @media print {
+    .site-header,
+    .site-footer {
+      display: none;
+    }
+    body {
+      color: #000;
+      background: #fff;
+    }
+  }
+}

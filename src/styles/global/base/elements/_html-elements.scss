@@ -1,0 +1,25 @@
+//
+// _html-elements.scss
+// ==================================================
+// プロジェクトに適用するプレーンHTMLタグのスタイル
+
+body {
+	overflow-y: scroll;
+	font-family: var(--font-family-common);
+	line-height: 1.8;
+	color: #222;
+	background: #f7f7fb;
+}
+
+a {
+	color: var(--brand-color-main);
+}
+
+code {
+	padding-block: 2px;
+	padding-inline: 5px;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	font-size: 90%;
+	background: #f4f4f9;
+}

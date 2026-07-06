@@ -1,0 +1,46 @@
+//
+// _tokens.scss
+// ==================================================
+// 
+
+@use "abstracts" as a;
+
+:root {
+
+	// フォントファミリー
+	// --------------------------------------------------
+	--font-family-common: sans-serif;
+	--font-family-primary: "Inter";
+
+	// カラー
+	// --------------------------------------------------
+	 // abstracts の設定を利用
+	--brand-color-main: #{a.$brand-color-main};
+	--brand-color-sub: #{a.$brand-color-sub};
+
+	// コンテンツ有効幅
+	// --------------------------------------------------
+	--maxw-sm: 768px;
+	--maxw-md: 840px;
+	--maxw-lg: 1024px;
+
+	// 内部左右余白
+	--inner-pd-inline: 20px;
+
+	// アニメーション関連
+	// --------------------------------------------------
+	// library 層（animate.css）の既定値 1s を上書き。
+	// base.tokens は base.library より上位レイヤーなので、
+	// 詳細度が同じ :root でもこちらが適用される。
+	--animate-duration: 0.6s;
+
+
+	// レスポンシブ設定
+	// ==================================================
+	@media screen and ( min-width: 600px) {
+		// 内部左右余白
+		--inner-pd-inline: 30px;
+	}
+
+}
+

@@ -1,0 +1,61 @@
+//
+// about.scss
+// ==================================================
+// このサイトについて（下層サンプルページ）のCSS
+//
+
+@charset "utf-8";
+
+@layer pages {
+
+	// ダミーセクション
+	// ==================================================
+	.dummy {
+		padding-block: 52px;
+	}
+
+		.dummy__inner {
+			max-width: var(--maxw-sm);
+			margin-inline: auto;
+			padding-inline: var(--inner-pd-inline);
+		}
+
+		.dummy__header {
+			// keep
+		}
+
+		.dummy__heading {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			
+			.title {
+				font-size: 26px;
+			}
+		}
+
+		.dummy__body {
+			padding-block: 24px;
+		}
+
+		.dummy__textbox {
+			line-height: 2;
+			text-align: center;
+
+			p + p {
+				margin-block-start: 0.5em;
+			}
+		}
+
+		.dummy__footer {
+			padding-block-start: 24px;
+		}
+		
+		.dummy__actions {
+			display: flex;
+			justify-content: center;
+		}
+
+
+
+}

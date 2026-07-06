@@ -1,0 +1,23 @@
+//
+// _footer.scss
+// ==================================================
+// フッター領域 全般のスタイル
+//
+
+.site-footer {
+	position: relative;
+	z-index: 1;
+	padding-block: 32px;
+	border-top: 1px solid #e3e3ef;
+	background-color: #3c3c46;
+}
+
+	.site-footer__inner {
+		padding-inline: 20px;
+	}
+
+	.footer-copyright {
+		letter-spacing: 0.05em;
+		text-align: center;
+		color: #dfe4ef;
+	}

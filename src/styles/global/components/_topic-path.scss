@@ -1,0 +1,32 @@
+//
+// _topic-path.scss
+// ==================================================
+// パンくずリスト
+// 
+
+.topic-path {
+	// keep
+}
+	.topic-path__items {
+		display: flex;
+		gap: 8px;
+	}
+
+	.topic-path__item {
+		display: flex;
+		gap: 8px;
+		+ .topic-path__item {
+			&::before {
+				content: "/";
+				color: #999;
+			}
+		}
+	}
+
+	.topic-path__item-link {
+		// keep
+	}
+
+	.topic-path__item-current {
+		color: #555;
+	}

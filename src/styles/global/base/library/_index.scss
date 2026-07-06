@@ -1,0 +1,12 @@
+//
+// _index.scss
+// ==================================================
+// base / library — 外部で作成された基底系・共通機能のCSS
+//
+// npm 管理の animate.css から「必要な部分だけ」取り込む例。
+// load-path に node_modules を追加しているため、パッケージ名から直接参照できる。
+// source/ から使うものだけを取り込み
+
+@use "animate.css/source/_vars.css";
+@use "animate.css/source/_base.css";
+@use "animate.css/source/fading_entrances/fadeInUp.css";

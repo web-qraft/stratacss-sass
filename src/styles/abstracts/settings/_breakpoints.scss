@@ -1,0 +1,26 @@
+//
+// _breakpoints.scss
+// ==================================================
+// ブレイクポイントの設定
+//
+
+// tools でメディアクエリの Mixin を作成して利用することを想定した記述例。
+// ※サンプルにつき、実際には利用していません。
+
+$breakpoints: (
+	mobile-s : 320px,
+	mobile   : 360px,  // メイン
+	mobile-l : 400px,
+
+	tablet-s : 520px,
+	tablet   : 600px,  // メイン
+	tablet-l : 768px,
+
+	laptop-s : 840px,
+	laptop   : 960px,  // メイン
+	laptop-l : 1080px,
+
+	desktop-s: 1152px,
+	desktop  : 1280px, // メイン
+	desktop-l: 1366px,
+);

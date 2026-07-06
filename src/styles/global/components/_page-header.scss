@@ -1,0 +1,40 @@
+//
+// _page-header.scss
+// ==================================================
+// 下層ページの表題
+// 
+
+.page-header {
+	padding-block: 40px 36px;
+	padding-inline: var(--inner-pd-inline);
+	background: #d9e5ee;
+	background: linear-gradient(to left, #d9e5ee , #ebecf4);
+}
+
+	.page-header__inner {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		max-width: var(--maxw-md);
+		margin-inline: auto;
+		padding-inline: 8px;
+		animation: fade-up 0.5s ease both;
+	}
+
+	// 見出し（通常 `h1` ）
+	// --------------------------------------------------
+	.page-heading {
+		font-size: 26px;
+	}
+
+	.page-heading__title {
+		
+		.text {
+			display: inline-block;
+			margin-inline-end: 8px;
+		}
+		.subtext {
+			display: inline-block;
+			font-size: 18px;
+		}
+	}

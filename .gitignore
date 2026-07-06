@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+*.log
+
+# dist/ は「動く証拠」として意図的にコミットするため無視しません。
+# ただし npm run build は --no-source-map のため、ソースマップは生成・追跡しない
+*.css.map
